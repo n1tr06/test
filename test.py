@@ -51,7 +51,7 @@ while (2 ** (bit - 2)) - 1 < num:
     print(f"3. Complete bit amount ({math.ceil(math.log2(num + 1)) + 2})")
     x = input("Enter 1, 2 or 3: ")
 
-    while x != 1 and x != 2 and x != 3:
+    while x not in [1, 2, 3]:
         x = input("Entered wrong answer, please enter 1, 2 or 3: ")
 
     match x:
