@@ -40,22 +40,24 @@ def listToString(list):
     return result
 
 
-num = int(input("Enter a number "))
-bit = int(input("Enter bit amount "))
+num = int(input("Enter a number: "))
+bit = int(input("Enter bit amount: "))
 
 while (2 ** (bit - 1)) - 1 < num:
 
     print(f"The number is too big for your bit amount, you need at least {math.ceil(math.log2(num + 1)) + 1} bits.")
     print("1. Change number")
-    print("2. Complete bit amount")
-    x = int(input("Enter 1 or 2: "))
+    print("2. Change bit amount")
+    print(f"3. Complete bit amount ({math.ceil(math.log2(num + 1)) + 1})")
+    x = int(input("Enter 1, 2 or 3: "))
 
     while x != 1 and x != 2:
         x = input("Entered wrong answer, please enter 1 or 2: ")
 
     match x:
-        case 1: num = int(input("Enter a number "))
-        case 2: bit = math.ceil(math.log2(num + 1)) + 1
+        case 1: num = int(input("Enter a number: "))
+        case 2: bit = int(input("Enter bit amount: "))
+        case 3: bit = math.ceil(math.log2(num + 1)) + 1
 
 final = toBinList(num, bit)
 
@@ -66,5 +68,3 @@ if num == 0:
     final[0] = 0
 
 print(listToString(final))
-
-
