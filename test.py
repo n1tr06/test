@@ -1,31 +1,43 @@
 import math
 
-def addOneBit(arr):
+def toBinList(num, bit):
+    binList = [0] * bit
+    for i in range(bit-1, 0):
+        binList[i] = num % 2
+        num = num // 2
+    return binList
 
-    for i in range(len(arr)-1, -1 , -1):
+def addOneBit(list):
+
+    for i in range(len(list)-1, -1 , -1):
         if i == 0:
             break;
         
-        elif arr[i] == 0:
-            arr[i] = 1
+        elif list[i] == 0:
+            list[i] = 1
             break;
         
         else:
-            arr[i] = 0
+            list[i] = 0
 
-    return arr
+    return list
             
-def reverseBit(arr):
+def reverseBit(list):
 
-    for i in range(0, len(arr)):
-        if arr[i] == 0:
-            arr[i] = 1
+    for i in range(0, len(list)):
+        if list[i] == 0:
+            list[i] = 1
 
         else:
-            arr[i] = 0
+            list[i] = 0
 
-    return arr
+    return list
 
+def listToString(list):
+    result = ""
+    for i in range(len(list)):
+        result += str(list[i])
+    return result
 
 
 num = int(input("Enter a number "))
@@ -33,23 +45,26 @@ bit = int(input("Enter bit amount "))
 
 while (2 ** (bit - 1)) - 1 < num:
 
-    print(f"The number is too big for your bit amount, you need at least {math.ceil(math.log2(num + 1)) + 1} bits ")
-    print("1. change number ")
-    x = int(input("2. complete bit amount \n"))
+    print(f"The number is too big for your bit amount, you need at least {math.ceil(math.log2(num + 1)) + 1} bits.")
+    print("1. Change number")
+    print("2. Complete bit amount")
+    x = int(input("Enter 1 or 2: "))
 
     while x != 1 and x != 2:
-        x = input("entered wrong answer, please enter 1 or 2 ")
+        x = int(input("Entered wrong answer, please enter 1 or 2: "))
 
     match x:
         case 1: num = int(input("Enter a number "))
         case 2: bit = math.ceil(math.log2(num + 1)) + 1
 
-final = [0] * bit
+final = toBinList(num, bit)
 
 for i in range(0, num):
     final = addOneBit(final)
 
 final = reverseBit(final)
-print(addOneBit(final))
+addOneBit(final)
+
+print(listToString(final))
 
 
