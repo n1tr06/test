@@ -2,7 +2,7 @@ import math
 
 def toBinList(num, bit):
     binList = [0] * bit
-    for i in range(bit-1, 0):
+    for i in range(bit-1, -1, -1):
         binList[i] = num % 2
         num = num // 2
     return binList
@@ -51,7 +51,7 @@ while (2 ** (bit - 1)) - 1 < num:
     x = int(input("Enter 1 or 2: "))
 
     while x != 1 and x != 2:
-        x = int(input("Entered wrong answer, please enter 1 or 2: "))
+        x = input("Entered wrong answer, please enter 1 or 2: ")
 
     match x:
         case 1: num = int(input("Enter a number "))
@@ -59,11 +59,11 @@ while (2 ** (bit - 1)) - 1 < num:
 
 final = toBinList(num, bit)
 
-for i in range(0, num):
-    final = addOneBit(final)
-
 final = reverseBit(final)
 addOneBit(final)
+
+if num == 0:
+    final[0] = 0
 
 print(listToString(final))
 
